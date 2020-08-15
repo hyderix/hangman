@@ -1,4 +1,4 @@
-#import get_dict
+import get_dict
 
 
 class Game:
