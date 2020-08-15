@@ -20,8 +20,6 @@ class Game:
         print(f"Bye from {type(self)}")
     def play(self):
         while True:
-            if "".join(self.revealed) == self.word:
-                    print(f"Congratulations! The word was {self.word}, you did it in {self.initialtries-self.tries}")
             if self.tries > 0:
                 
                 print(f"Hangman: {''.join(self.revealed)}\nGuessed Letters: {''.join(self.wrongletters)}\nAttempts Left: {self.tries}\n-------------")
@@ -36,6 +34,8 @@ class Game:
             else:
                 print(f"You've ran out of tries, the word was {self.word}.")
                 break
+            if "".join(self.revealed) == self.word:
+                    print(f"Congratulations! The word was {self.word}, you did it in {self.initialtries-self.tries}")
                 
     def return_string(self):
         return "".join(self.revealed)
