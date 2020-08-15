@@ -8,7 +8,7 @@ class Game:
         self.wrongletters = list()
         try:
             if word:
-                self.word = str(word)
+                self.word = str(word).upper()
             else:
                 self.word = self.pick_word()
         except Exception as e:
