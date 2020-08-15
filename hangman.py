@@ -8,7 +8,7 @@ class Game:
         self.wrongletters = list()
         try:
             if word:
-                self.word = str(word).upper()
+                self.word = str(word)
             else:
                 self.word = self.pick_word()
         except Exception as e:
@@ -54,12 +54,12 @@ class Game:
         from random import choice
         '''Returns a word from the SOWPODS dictionary'''
         try:
-            with open("hangman/dict.txt", "r") as dict_file:
+            with open("dict.txt", "r") as dict_file:
                 words = dict_file.read().split("\n")
         except:
             import get_dict
             self.pick_word()
         return choice(words)
 
-game1 = Game().play()
+
 
