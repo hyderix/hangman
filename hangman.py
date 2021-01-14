@@ -13,14 +13,16 @@ class Game:
                 self.word = self.pick_word()
         except Exception as e:
             print("Something went wrong({}).".format(e))
-        self.revealed = list()
-        for i in range(len(self.word)):
-            self.revealed.append("_")
+        self.revealed = ["_" for x in range(len(self.word))]
+        
     def __del__(self):
         print(f"Bye from {type(self)}")
     def play(self):
         while True:
             if self.tries > 0:
+                if "".join(self.revealed) == self.word:
+                    print(f"Congratulations! The word was {self.word}, you did it in {self.initialtries-self.tries} tries")
+                    return True
                 
                 print(f"Hangman: {''.join(self.revealed)}\nGuessed Letters: {''.join(self.wrongletters)}\nAttempts Left: {self.tries}\n-------------")
                 user_input = input("Guess a letter: ").upper()
@@ -31,12 +33,11 @@ class Game:
                 else:
                     print("Incorrect\n-------------")
                     self.tries-=1
+                    continue
             else:
                 print(f"You've ran out of tries, the word was {self.word}.")
-                break
-            if "".join(self.revealed) == self.word:
-                    print(f"Congratulations! The word was {self.word}, you did it in {self.initialtries-self.tries}")
-                
+                return False
+
     def return_string(self):
         return "".join(self.revealed)
     def guess_letter(self, letter):
