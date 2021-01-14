@@ -1,2 +1,2 @@
 import hangman
-game = hangman.Game().play()
+game = hangman.Game(word="EXAMPLE").play()
