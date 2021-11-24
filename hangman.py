@@ -6,27 +6,29 @@ class Game:
         self.tries = tries
         self.initialtries = tries
         self.wrongletters = list()
+        self.usedattempts = 0 
         try:
             if word:
-                self.word = str(word)
+                self.word = str(word).upper()
             else:
                 self.word = self.pick_word()
         except Exception as e:
             print("Something went wrong({}).".format(e))
         self.revealed = ["_" for x in range(len(self.word))]
         
-    def __del__(self):
-        print(f"Bye from {type(self)}")
+#   def __del__(self):
+#       print(f"Bye from {type(self)}")
     def play(self):
         while True:
             if self.tries > 0:
                 if "".join(self.revealed) == self.word:
-                    print(f"Congratulations! The word was {self.word}, you did it in {self.initialtries-self.tries} tries")
+                    print(f"Congratulations! The word was {self.word}, you did it in {self.usedattempts} tries")
                     return True
                 
                 print(f"Hangman: {''.join(self.revealed)}\nGuessed Letters: {''.join(self.wrongletters)}\nAttempts Left: {self.tries}\n-------------")
                 user_input = input("Guess a letter: ").upper()
                 print("-------------")
+                self.usedattempts+=1
                 if self.guess_letter(user_input):
                     print("Correct\n-------------")
                     continue
